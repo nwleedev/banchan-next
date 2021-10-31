@@ -4,7 +4,8 @@ import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
 import { IProductItem, IProductResponse } from '../../interfaces/product/item';
-import { LinkIcon } from '../../layouts/icons/copy';
+import { LinkIcon } from '../../components/icons/copy';
+import { MainLayout } from '../../components/layouts/Layout';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
@@ -32,42 +33,15 @@ const ProductPage = (props: any) => {
   const product: IProductItem = props.product;
 
   return (
-    <div
-      className="lg:container lg:mx-auto pb-8 px-8"
-      style={{ width: '100%', maxWidth: '1080px', minWidth: '0px' }}
-    >
-      {product && (
+    product && (
+      <MainLayout pageTitle={product.title}>
         <>
-          <Head>
-            <title>{product.title} - Banchan App</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, user-scalable=no"
-            />
-            <meta name="description" content="Welcome to Online Banchan App!" />
-          </Head>
-
-          <div className="flex items-center mt-4">
-            <h1 className="md:text-4xl xs:text-2xl font-bold mr-2 pl-6 whitespace-nowrap">
-              <Link href="/">BANCHAN APP</Link>
-            </h1>
-            <div className="relative xs:w-10 md:w-18">
-              <Image
-                src="/header_icon.png"
-                alt="header-icon"
-                layout="responsive"
-                objectFit="contain"
-                width="100%"
-                height="100%"
-              />
-            </div>
-          </div>
-          <div className="my-2 px-6">
+          <div className="my-2 px-2">
             <hr className="w-100" />
           </div>
-          <div className="px-6">
+          <div className="px-2">
             <h1 className="text-2xl font-bold">{product.title}</h1>
-            <div className="xs:w-48 sm:w-72 md:w-96 relative my-4">
+            <div className="xs:w-54 sm:w-72 md:w-96 relative my-4">
               <Image
                 src={product.thumbnail}
                 alt={`thumbnail_${product.id}`}
@@ -123,8 +97,8 @@ const ProductPage = (props: any) => {
             </div>
           </div>
         </>
-      )}
-    </div>
+      </MainLayout>
+    )
   );
 };
 
