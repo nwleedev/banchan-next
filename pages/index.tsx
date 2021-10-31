@@ -60,14 +60,23 @@ const Home = (props: any) => {
   }, [isLoading]);
 
   return (
-    <div className="lg:container lg:mx-auto pb-8 px-8">
+    <div
+      className="lg:container lg:mx-auto pb-8 px-8"
+      style={{ width: '100%', maxWidth: '1080px', minWidth: '420px' }}
+    >
       <Head>
         <title>Create Next App</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no"
+        />
         <meta name="description" content="Welcome to Online Banchan App!" />
       </Head>
 
       <div className="flex items-center mt-4">
-        <h1 className="text-4xl font-bold mr-2 pl-6">BANCHAN APP</h1>
+        <h1 className="text-4xl font-bold mr-2 pl-6 whitespace-nowrap">
+          BANCHAN APP
+        </h1>
         <Image
           src="/header_icon.png"
           alt="header-icon"
@@ -76,7 +85,7 @@ const Home = (props: any) => {
         />
       </div>
       <div className="my-4 px-6">
-        <h4 className="mb-2 font-bold">우리들의 맛있는 반찬 전시회</h4>
+        <h4 className="mb-2 font-bold text-md">우리들의 맛있는 반찬 전시회</h4>
         <hr className="w-100" />
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 gap-6 px-6 mt-6">

@@ -40,6 +40,10 @@ const ProductPage = (props: any) => {
         <>
           <Head>
             <title>{product.title} - Banchan App</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, user-scalable=no"
+            />
             <meta name="description" content="Welcome to Online Banchan App!" />
           </Head>
 
