@@ -47,12 +47,12 @@ const Home = (props: any) => {
 
   useEffect(() => {
     const callback = () => {
-      if (!document.documentElement) {
+      if (!document.documentElement || !window) {
         return;
       }
-      const { scrollHeight, scrollTop, clientHeight } =
-        document.documentElement;
-      if (scrollHeight - clientHeight - scrollTop <= 10 && isLoading) {
+      const { scrollHeight, scrollTop } = document.documentElement;
+      const { innerHeight } = window;
+      if (scrollTop + innerHeight + 20 >= scrollHeight && isLoading) {
         fetchNextData();
       }
     };
