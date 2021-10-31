@@ -34,7 +34,7 @@ const ProductPage = (props: any) => {
   return (
     <div
       className="lg:container lg:mx-auto pb-8 px-8"
-      style={{ width: '100%', maxWidth: '1080px', minWidth: '420px' }}
+      style={{ width: '100%', maxWidth: '1080px', minWidth: '0px' }}
     >
       {product && (
         <>
@@ -48,22 +48,26 @@ const ProductPage = (props: any) => {
           </Head>
 
           <div className="flex items-center mt-4">
-            <h1 className="text-4xl font-bold mr-2 pl-6">
+            <h1 className="md:text-4xl xs:text-2xl font-bold mr-2 pl-6 whitespace-nowrap">
               <Link href="/">BANCHAN APP</Link>
             </h1>
-            <Image
-              src="/header_icon.png"
-              alt="header-icon"
-              width="52px"
-              height="52px"
-            />
+            <div className="relative xs:w-10 md:w-18">
+              <Image
+                src="/header_icon.png"
+                alt="header-icon"
+                layout="responsive"
+                objectFit="contain"
+                width="100%"
+                height="100%"
+              />
+            </div>
           </div>
           <div className="my-2 px-6">
             <hr className="w-100" />
           </div>
           <div className="px-6">
             <h1 className="text-2xl font-bold">{product.title}</h1>
-            <div className="w-96 relative my-4">
+            <div className="xs:w-48 sm:w-72 md:w-96 relative my-4">
               <Image
                 src={product.thumbnail}
                 alt={`thumbnail_${product.id}`}

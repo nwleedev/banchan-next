@@ -62,7 +62,7 @@ const Home = (props: any) => {
   return (
     <div
       className="lg:container lg:mx-auto pb-8 px-8"
-      style={{ width: '100%', maxWidth: '1080px', minWidth: '420px' }}
+      style={{ width: '100%', maxWidth: '1080px', minWidth: '0px' }}
     >
       <Head>
         <title>Create Next App</title>
@@ -74,18 +74,24 @@ const Home = (props: any) => {
       </Head>
 
       <div className="flex items-center mt-4">
-        <h1 className="text-4xl font-bold mr-2 pl-6 whitespace-nowrap">
+        <h1 className="md:text-4xl xs:text-2xl font-bold mr-2 pl-6 whitespace-nowrap">
           BANCHAN APP
         </h1>
-        <Image
-          src="/header_icon.png"
-          alt="header-icon"
-          width="52px"
-          height="52px"
-        />
+        <div className="relative xs:w-10 md:w-18">
+          <Image
+            src="/header_icon.png"
+            alt="header-icon"
+            layout="responsive"
+            objectFit="contain"
+            width="100%"
+            height="100%"
+          />
+        </div>
       </div>
       <div className="my-4 px-6">
-        <h4 className="mb-2 font-bold text-md">우리들의 맛있는 반찬 전시회</h4>
+        <h4 className="mb-2 font-bold xs:text-sm md:text-md">
+          우리들의 맛있는 반찬 전시회
+        </h4>
         <hr className="w-100" />
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 gap-6 px-6 mt-6">
@@ -95,7 +101,7 @@ const Home = (props: any) => {
               key={idx}
               className="flex flex-col items-stretch relative py-3 px-4 shadow-lg mt-4 bg-white"
             >
-              <div className="w-100 relative">
+              <div className="relative">
                 <Image
                   src={p.thumbnail}
                   alt={`thumbnail_${p.id}`}
