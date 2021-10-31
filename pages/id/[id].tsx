@@ -72,11 +72,11 @@ const ProductPage = (props: any) => {
             <h3 className="font-bold text-lg">
               현재가: <span className="text-red-500">{product.price}원</span>
             </h3>
-            <div className="flex items-center my-2">
+            <div className="flex flex-wrap items-center">
               {product.tags.map((tag) => (
                 <h5
                   key={tag.id}
-                  className="bg-pink-600 flex mr-2 px-2 py-1 rounded-xl font-bold text-white shadow-md"
+                  className="bg-pink-600 flex mr-2 my-1 px-2 py-1 rounded-xl font-bold text-white shadow-md"
                 >
                   {tag.name}
                 </h5>
