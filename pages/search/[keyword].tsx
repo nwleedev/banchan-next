@@ -1,34 +1,55 @@
-import next, { GetServerSideProps } from 'next';
 import axios from 'axios';
+import _ from 'lodash';
+import next, { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import { IProduct, IProductResponse } from '../interfaces/product';
 import { useCallback, useEffect, useState } from 'react';
-import { MainLayout } from '../components/layouts/Layout';
-import { ProductItem } from '../components/layouts/ProductItem';
+import { MainLayout } from '../../components/layouts/Layout';
+import { ProductItem } from '../../components/layouts/ProductItem';
+import { IProduct, IProductResponse } from '../../interfaces/product';
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
-  const { products }: IProductResponse = resp.data;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const keyword = context.params?.keyword;
+  if (typeof keyword !== 'string') {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+  const resp = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/search/${encodeURIComponent(
+      keyword,
+    )}/1`,
+  );
+  const data: IProductResponse = resp.data;
+  const { products } = data;
   return {
     props: {
       products,
+      keyword,
     },
   };
 };
 
-const Home = (props: any) => {
-  const [products, setProducts] = useState<IProduct[]>(props.products);
+const ProductSearch = (props: any) => {
+  const [products, setProducts] = useState<IProduct[]>(
+    props.products as IProduct[],
+  );
+  const keyword: string = props.keyword;
   const [nextPage, setNextPage] = useState(2);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchNextData = async () => {
     setIsLoading(false);
-    console.log('At the bottom');
     try {
       const resp = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/products/${nextPage}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/products/search/${keyword}/${nextPage}`,
       );
       const { products: _products }: IProductResponse = resp.data;
+      if (!_products) {
+        return;
+      }
       setProducts((products) => [...products, ..._products]);
       setNextPage((nextPage) => nextPage + 1);
       await new Promise((res, _) => {
@@ -59,7 +80,7 @@ const Home = (props: any) => {
   }, [isLoading]);
 
   return (
-    <MainLayout>
+    <MainLayout pageTitle={keyword}>
       <>
         <h4 className="text-center font-bold text-white px-1 py-2 ml-2 bg-black w-32 rounded-md">
           <Link href="/search">검색 화면</Link>
@@ -73,4 +94,4 @@ const Home = (props: any) => {
   );
 };
 
-export default Home;
+export default ProductSearch;

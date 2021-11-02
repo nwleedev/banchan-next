@@ -1,4 +1,4 @@
-export const TopIcon = () => (
+const ScrollIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="h-6 w-6 text-white"
@@ -14,3 +14,5 @@ export const TopIcon = () => (
     />
   </svg>
 );
+
+export default ScrollIcon;
