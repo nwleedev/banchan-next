@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
 import Image from 'next/image';
 import { IProductItem, IProductResponse } from '../../interfaces/product/item';
 import { LinkIcon } from '../../components/icons';
@@ -54,11 +55,14 @@ const ProductPage = (props: any) => {
                 key={tag.id}
                 className="bg-pink-600 flex mr-2 my-1 px-2 py-1 rounded-xl font-bold text-white shadow-md"
               >
-                {tag.name}
+                <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
               </h5>
             ))}
           </div>
-          <h3 className="text-md font-semibold my-2">
+          <h6 className="text-sm font-light my-2">
+            태그를 눌러 태그 별 상품 페이지로 이동할 수 있습니다.
+          </h6>
+          <h3 className="text-md font-semibold mt-6 mb-2">
             사용자 리뷰: {product.review}개
           </h3>
           <div className="flex">

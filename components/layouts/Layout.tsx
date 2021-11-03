@@ -4,23 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ILayout } from '../../interfaces/layout';
-import { ISearch, SearchType } from '../../interfaces/search';
-import { ScrollIcon, SearchIcon } from '../icons';
+import { ISearch } from '../../interfaces/search';
+import { ScrollIcon } from '../icons';
 
 export const MainLayout = ({ pageTitle, children }: ILayout) => {
-  const router = useRouter();
-  const [value, setValue] = useState<ISearch>({
-    keyword: '',
-    type: 'keyword',
-  });
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (value.type === 'keyword') {
-      router.push(`/search/${value.keyword}`);
-    } else {
-      router.push(`/tag/search/${value.keyword}`);
-    }
-  };
   return (
     <div
       className="lg:container lg:mx-auto pb-8 px-8"

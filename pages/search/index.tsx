@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { SearchIcon } from '../../components/icons';
@@ -39,9 +38,9 @@ const ProductSearch = () => {
           <option value="keyword" className="text-sm font-semibold">
             키워드
           </option>
-          <option value="tag" className="text-sm font-semibold">
+          {/* <option value="tag" className="text-sm font-semibold">
             태그
-          </option>
+          </option> */}
         </select>
         <input
           className="transition py-2 pl-3 pr-12 focus:outline-none w-full text-black text-sm"

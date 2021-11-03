@@ -1,8 +1,7 @@
 import axios from 'axios';
-import _ from 'lodash';
 import next, { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MainLayout } from '../../components/layouts/Layout';
 import { ProductItem } from '../../components/layouts/ProductItem';
 import { IProduct, IProductResponse } from '../../interfaces/product';
@@ -80,7 +79,7 @@ const ProductSearch = (props: any) => {
   }, [isLoading]);
 
   return (
-    <MainLayout pageTitle={keyword}>
+    <MainLayout pageTitle={keyword + ' 검색'}>
       <>
         <h4 className="text-center font-bold text-white px-1 py-2 ml-2 bg-black w-32 rounded-md">
           <Link href="/search">검색 화면</Link>
