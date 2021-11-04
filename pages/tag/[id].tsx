@@ -83,9 +83,14 @@ const ProductByTag = (props: any) => {
   return (
     <MainLayout pageTitle={tagName + ' 태그'}>
       <>
-        <h4 className="text-center font-bold text-white px-1 py-2 ml-2 bg-black w-32 rounded-md">
-          <Link href="/search">검색 화면</Link>
-        </h4>
+        <div className="flex items-end">
+          <h4 className="text-center font-bold text-white py-1 ml-2 mr-2 bg-black w-32 rounded-md">
+            <Link href="/search">검색 화면</Link>
+          </h4>
+          <h5 className="ml-auto bg-pink-600 text-white text-sm py-1 mr-2 w-14 text-center rounded-md">
+            {tagName}
+          </h5>
+        </div>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 gap-6 px-2 mt-6">
           {products &&
             products.map((p, idx) => <ProductItem key={idx} p={p} />)}
