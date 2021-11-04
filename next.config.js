@@ -7,7 +7,8 @@ module.exports = withPWA({
     domains: ['static.coupangcdn.com'],
   },
   pwa: {
-    dest: 'public',
+    // dest: 'public',
+    sw: '/sw.js',
     register: true,
     skipWaiting: true,
     disable: process.env.NODE_ENV === 'development',
