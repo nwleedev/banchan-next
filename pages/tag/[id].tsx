@@ -87,7 +87,7 @@ const ProductByTag = (props: any) => {
           <h4 className="text-center font-bold text-white py-1 ml-2 mr-2 bg-black w-32 rounded-md">
             <Link href="/search">검색 화면</Link>
           </h4>
-          <h5 className="ml-auto bg-pink-600 text-white text-sm py-1 mr-2 w-14 text-center rounded-md">
+          <h5 className="ml-auto bg-pink-600 text-white text-sm py-1 mr-2 px-2 text-center rounded-md">
             {tagName}
           </h5>
         </div>
