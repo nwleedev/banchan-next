@@ -37,7 +37,3 @@ yarn-error.log*
 *.tsbuildinfo
 
 # PWA files
-**/public/workbox-*.js
-**/public/worker-*.js
-**/public/workbox-*.js.map
-**/public/worker-*.js.map
