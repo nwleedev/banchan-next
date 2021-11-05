@@ -29,11 +29,11 @@ export const MainLayout = ({ pageTitle, children }: ILayout) => {
         </h1>
         <Link href="/" passHref={true}>
           <div className="relative xs:w-12 md:w-18">
-            <Image
+            <img
               src="/header_icon.png"
               alt="header-icon"
-              layout="responsive"
-              objectFit="contain"
+              // layout="responsive"
+              // objectFit="contain"
               width="100%"
               height="100%"
             />

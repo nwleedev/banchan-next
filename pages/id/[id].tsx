@@ -37,11 +37,11 @@ const ProductPage = (props: any) => {
         <div className="px-2">
           <h1 className="text-2xl font-bold">{product.title}</h1>
           <div className="xs:w-54 sm:w-72 md:w-96 relative my-4">
-            <Image
+            <img
               src={product.thumbnail}
               alt={`thumbnail_${product.id}`}
-              layout="responsive"
-              objectFit="contain"
+              // layout="responsive"
+              // objectFit="contain"
               width="100%"
               height="100%"
             />

@@ -7,11 +7,11 @@ export const ProductItem = ({ p }: { p: IProduct }) => {
   return (
     <div className="flex flex-col items-stretch relative py-3 px-4 shadow-lg mt-4 bg-white">
       <div className="relative">
-        <Image
+        <img
           src={p.thumbnail}
           alt={`thumbnail_${p.id}`}
-          layout="responsive"
-          objectFit="contain"
+          // layout="responsive"
+          // objectFit="contain"
           width="100%"
           height="100%"
         />
