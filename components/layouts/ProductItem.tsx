@@ -1,9 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { IProduct } from '../../interfaces/product';
 import { CopyIcon, LinkIcon } from '../icons';
+import CopyMessage from './Toast';
 
 export const ProductItem = ({ p }: { p: IProduct }) => {
+  const [isCopyed, setIsCopyed] = useState(false);
   return (
     <div className="flex flex-col items-stretch relative py-3 px-4 shadow-lg mt-4 bg-white">
       <div className="relative">
@@ -33,9 +36,27 @@ export const ProductItem = ({ p }: { p: IProduct }) => {
           <LinkIcon />
           <h5 className="text-center font-bold text-white">반찬 쇼핑</h5>
         </a>
-        <button className="bg-green-300 mt-2 p-1 rounded-md">
+        <button
+          className="bg-green-300 mt-2 p-1 rounded-md"
+          onClick={async () => {
+            if (!('clipboard' in navigator)) {
+              return;
+            }
+            navigator.clipboard.writeText(p.landing_url);
+            if (!isCopyed) {
+              setIsCopyed(true);
+              await new Promise((res, _) => {
+                setTimeout(() => {
+                  setIsCopyed(false);
+                  res(null);
+                }, 3000);
+              });
+            }
+          }}
+        >
           <CopyIcon />
         </button>
+        {isCopyed && <CopyMessage />}
       </div>
     </div>
   );
