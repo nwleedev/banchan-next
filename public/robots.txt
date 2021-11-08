@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://banchanapp.com/sitemap.xml
