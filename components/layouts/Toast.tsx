@@ -1,5 +1,5 @@
 const CopyMessage = () => (
-  <div className="fixed top-0 right-0 m-5">
+  <div className="fixed top-0 right-0 m-5 z-10">
     <div className="flex items-center bg-green-500 border-l-4 border-green-700 py-2 px-3 shadow-md mb-2">
       <div className="text-green-500 rounded-full bg-white mr-3">
         <svg
@@ -16,7 +16,9 @@ const CopyMessage = () => (
           />
         </svg>
       </div>
-      <div className="text-white max-w-xs ">링크가 복사되었습니다.</div>
+      <div className="text-white max-w-xs font-bold">
+        링크가 복사되었습니다.
+      </div>
     </div>
   </div>
 );

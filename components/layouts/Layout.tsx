@@ -1,18 +1,20 @@
-import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { ILayout } from '../../interfaces/layout';
-import { ISearch } from '../../interfaces/search';
 import { ScrollIcon } from '../icons';
 
 export const MainLayout = ({ pageTitle, children }: ILayout) => {
   return (
     <>
       <div
-        className="lg:container lg:mx-auto pb-8 px-8"
-        style={{ width: '100%', maxWidth: '1080px', minWidth: '0px' }}
+        className="lg:container lg:mx-auto px-8"
+        style={{
+          width: '100%',
+          maxWidth: '1080px',
+          minWidth: '0px',
+          paddingBottom: '120px',
+        }}
       >
         <Head>
           <title>{pageTitle && pageTitle + ' - '}Banchan Online</title>
@@ -49,14 +51,14 @@ export const MainLayout = ({ pageTitle, children }: ILayout) => {
         </div>
         {children}
         <button
-          className="bg-black fixed p-2 rounded-2xl"
+          className="bg-white fixed p-2 rounded-2xl z-10"
           style={{ bottom: 30, left: 30 }}
           onClick={() => window.scrollTo(0, 0)}
         >
           <ScrollIcon />
         </button>
       </div>
-      <div className="bg-black p-4 mt-2">
+      <div className="bg-black p-4 fixed bottom-0 left-0 right-0">
         <h2 className="text-white text-center font-bold">
           이 사이트는 쿠팡 파트너스의 활동을 통해 쿠팡에서 일정액의 수수료를
           제공받습니다.
