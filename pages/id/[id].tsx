@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { IProductItem, IProductResponse } from '../../interfaces/product/item';
 import { LinkIcon } from '../../components/icons';
 import { MainLayout } from '../../components/layouts/Layout';
+import { Doughnut } from 'react-chartjs-2';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
@@ -40,8 +41,6 @@ const ProductPage = (props: any) => {
             <img
               src={product.thumbnail}
               alt={`thumbnail_${product.id}`}
-              // layout="responsive"
-              // objectFit="contain"
               width="100%"
               height="100%"
             />
@@ -65,6 +64,30 @@ const ProductPage = (props: any) => {
           <h3 className="text-md font-semibold mt-6 mb-2">
             사용자 리뷰: {product.review}개
           </h3>
+          <div
+            style={{ width: '100%', maxWidth: '600px' }}
+            className="mt-2 mb-6"
+          >
+            {product && product.ratio && product.ratio.length === 5 && (
+              <Doughnut
+                data={{
+                  labels: ['최고예요', '좋아요', '보통', '좀 그래요', '싫어요'],
+                  datasets: [
+                    {
+                      data: product.ratio,
+                      backgroundColor: [
+                        '#ee6f85',
+                        '#fd7f15',
+                        '#fec106',
+                        '#40d6a7',
+                        '#527abe',
+                      ],
+                    },
+                  ],
+                }}
+              />
+            )}
+          </div>
           <div className="flex">
             <a
               className="px-4 flex justify-center items-center rounded-md bg-green-400 mr-2 py-1 shadow-md"

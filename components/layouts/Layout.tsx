@@ -35,8 +35,6 @@ export const MainLayout = ({ pageTitle, children }: ILayout) => {
               <img
                 src="/header_icon.png"
                 alt="header-icon"
-                // layout="responsive"
-                // objectFit="contain"
                 width="100%"
                 height="100%"
               />
@@ -52,7 +50,7 @@ export const MainLayout = ({ pageTitle, children }: ILayout) => {
         {children}
         <button
           className="bg-white fixed p-2 rounded-2xl z-10"
-          style={{ bottom: 30, left: 30 }}
+          style={{ bottom: 72, left: 30 }}
           onClick={() => window.scrollTo(0, 0)}
         >
           <ScrollIcon />
