@@ -4,7 +4,7 @@ import React from 'react';
 import { ILayout } from '../../interfaces/layout';
 import { ScrollIcon } from '../icons';
 
-export const MainLayout = ({ pageTitle, children }: ILayout) => {
+export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
   return (
     <>
       <div
@@ -23,6 +23,18 @@ export const MainLayout = ({ pageTitle, children }: ILayout) => {
             content="width=device-width, initial-scale=1, user-scalable=no"
           />
           <meta name="description" content="Welcome to Online Banchan App!" />
+          {image && (
+            <>
+              <meta name="og:image" content={image} />
+              <meta name="twitter:image" content={image} />
+            </>
+          )}
+          {url && (
+            <>
+              <meta name="og:url" content={url} />
+              <meta name="twitter:url" content={url} />
+            </>
+          )}
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

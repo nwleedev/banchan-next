@@ -34,13 +34,17 @@ const ProductPage = (props: any) => {
 
   return (
     product && (
-      <MainLayout pageTitle={product.title}>
+      <MainLayout
+        pageTitle={product.title}
+        url={product.landing_url}
+        image={product.thumbnail}
+      >
         <div className="px-2">
           <h1 className="text-2xl font-bold">{product.title}</h1>
           <div className="xs:w-54 sm:w-72 md:w-96 relative my-4">
             <img
               src={product.thumbnail}
-              alt={`thumbnail_${product.id}`}
+              alt={product.title}
               width="100%"
               height="100%"
             />
