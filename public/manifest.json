@@ -4,9 +4,9 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Online Banchan App",
+    "name": "반찬 저장소",
     "short_name": "Banchan",
-    "description": "The web application displaying Korean side dishes",
+    "description": "온라인으로 맛 좋은 반찬을 쉽게 찾아볼 수 있는 반찬 저장소",
     "icons": [
         {
             "src": "/icon-192x192.png",

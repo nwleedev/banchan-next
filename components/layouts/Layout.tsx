@@ -17,7 +17,7 @@ export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
         }}
       >
         <Head>
-          <title>{pageTitle && pageTitle + ' - '}Banchan Online</title>
+          <title>{pageTitle && pageTitle + ' - '}반찬 저장소</title>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
