@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -62,14 +63,14 @@ export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
         {children}
         <button
           className="bg-white fixed p-2 rounded-2xl z-10"
-          style={{ bottom: 72, left: 30 }}
+          style={{ bottom: 48, left: 30 }}
           onClick={() => window.scrollTo(0, 0)}
         >
           <ScrollIcon />
         </button>
       </div>
-      <div className="bg-black p-4 fixed bottom-0 left-0 right-0">
-        <h2 className="text-white text-center font-bold">
+      <div className="bg-black p-1 fixed bottom-0 left-0 right-0">
+        <h2 className="text-white text-center font-bold text-xs">
           이 사이트는 쿠팡 파트너스의 활동을 통해 쿠팡에서 일정액의 수수료를
           제공받습니다.
         </h2>
