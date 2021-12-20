@@ -1,5 +1,4 @@
 import next, { GetServerSideProps } from 'next';
-import axios from 'axios';
 import Link from 'next/link';
 import { IProduct, IProductResponse } from '../interfaces/product';
 import { useEffect, useState } from 'react';
@@ -7,8 +6,8 @@ import { MainLayout } from '../components/layouts/Layout';
 import { ProductItem } from '../components/layouts/ProductItem';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
-  const { products }: IProductResponse = resp.data;
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
+  const { products }: IProductResponse = await resp.json();
   return {
     props: {
       products,
@@ -25,10 +24,10 @@ const Home = (props: any) => {
     setIsLoading(false);
     console.log('At the bottom');
     try {
-      const resp = await axios.get(
+      const resp = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/products/${nextPage}`,
       );
-      const { products: _products }: IProductResponse = resp.data;
+      const { products: _products }: IProductResponse = await resp.json();
       setProducts((products) => [...products, ..._products]);
       setNextPage((nextPage) => nextPage + 1);
       await new Promise((res, _) => {

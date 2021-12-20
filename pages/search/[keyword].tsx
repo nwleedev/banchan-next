@@ -1,4 +1,3 @@
-import axios from 'axios';
 import next, { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -16,12 +15,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  const resp = await axios.get(
+  const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/search/${encodeURIComponent(
       keyword,
     )}/1`,
   );
-  const data: IProductResponse = resp.data;
+  const data: IProductResponse = await resp.json();
   const { products } = data;
   return {
     props: {
@@ -42,10 +41,10 @@ const ProductSearch = (props: any) => {
   const fetchNextData = async () => {
     setIsLoading(false);
     try {
-      const resp = await axios.get(
+      const resp = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/products/search/${keyword}/${nextPage}`,
       );
-      const { products: _products }: IProductResponse = resp.data;
+      const { products: _products }: IProductResponse = await resp.json();
       if (!_products) {
         return;
       }

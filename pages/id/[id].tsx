@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -17,10 +16,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  const resp = await axios.get(
+  const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/id/${id}`,
   );
-  const data: IProductResponse = resp.data;
+  const data: IProductResponse = await resp.json();
   const { product } = data;
   return {
     props: {

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -17,12 +16,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  const resp = await axios.get(
+  const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/tags/id/${tag}/1`,
   );
   const {
     tag: { id, name, products },
-  }: ITagWithProductResponse = resp.data;
+  }: ITagWithProductResponse = await resp.json();
   return {
     props: {
       id,
@@ -42,12 +41,12 @@ const ProductByTag = (props: any) => {
   const fetchNextData = async () => {
     setIsLoading(false);
     try {
-      const resp = await axios.get(
+      const resp = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/tags/id/${tagId}/${nextPage}`,
       );
       const {
         tag: { products: _products },
-      }: ITagWithProductResponse = resp.data;
+      }: ITagWithProductResponse = await resp.json();
       if (!_products) {
         return;
       }
