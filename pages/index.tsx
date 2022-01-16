@@ -4,18 +4,23 @@ import { IProduct, IProductResponse } from '../interfaces/product';
 import { useEffect, useState } from 'react';
 import { MainLayout } from '../components/layouts/Layout';
 import { ProductItem } from '../components/layouts/ProductItem';
+import { ITag, ITagResponse } from '../interfaces/tag';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
+  let resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
   const { products }: IProductResponse = await resp.json();
+  resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags/1`);
+  const { tags }: ITagResponse = await resp.json();
   return {
     props: {
       products,
+      tags,
     },
   };
 };
 
 const Home = (props: any) => {
+  const [tags, setTags] = useState<ITag[]>(props.tags);
   const [products, setProducts] = useState<IProduct[]>(props.products);
   const [nextPage, setNextPage] = useState(2);
   const [isLoading, setIsLoading] = useState(true);
@@ -60,7 +65,18 @@ const Home = (props: any) => {
   return (
     <MainLayout>
       <>
-        <h4 className="text-center font-bold text-white px-1 py-2 ml-2 bg-black w-32 rounded-md">
+        <div className="flex px-1 py-2 mx-2 mb-2 overflow-x-auto scroll-hidden">
+          {tags &&
+            tags.map((tag) => (
+              <h4
+                key={tag.id}
+                className="whitespace-nowrap bg-pink-600 text-white text-sm py-1 mr-2 px-2 text-center rounded-md shadow-md"
+              >
+                {tag.name}
+              </h4>
+            ))}
+        </div>
+        <h4 className="text-center font-bold text-white px-1 py-2 ml-2 bg-black w-24 rounded-md">
           <Link href="/search">검색 화면</Link>
         </h4>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 gap-6 px-2 mt-6">

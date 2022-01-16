@@ -49,3 +49,12 @@ ol {
   line-height: 160% !important;
   font-family: 'Noto Sans KR', sans-serif;
 }
+
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -5,6 +5,11 @@ export interface ITag {
   name: string;
 }
 
+export interface ITagResponse {
+  message: string;
+  tags: ITag[];
+}
+
 export interface ITagWithProductResponse {
   message: string;
   tag: {
