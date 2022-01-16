@@ -10,11 +10,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
   let resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
   const { products }: IProductResponse = await resp.json();
   resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags/1`);
-  const { tags }: ITagResponse = await resp.json();
+  const { tags: tagOne }: ITagResponse = await resp.json();
+  resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags/2`);
+  const { tags: tagTwo }: ITagResponse = await resp.json();
   return {
     props: {
       products,
-      tags,
+      tags: [...tagOne, ...tagTwo],
     },
   };
 };
@@ -72,7 +74,7 @@ const Home = (props: any) => {
                 key={tag.id}
                 className="whitespace-nowrap bg-pink-600 text-white text-sm py-1 mr-2 px-2 text-center rounded-md shadow-md"
               >
-                {tag.name}
+                <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
               </h4>
             ))}
         </div>
