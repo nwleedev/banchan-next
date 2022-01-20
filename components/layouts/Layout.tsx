@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { ILayout } from '../../interfaces/layout';
 import { ScrollIcon } from '../icons';
+import Script from 'next/script';
 
 export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
   return (
@@ -75,6 +76,17 @@ export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
           제공받습니다.
         </h2>
       </div>
+      <Script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA}`}
+      ></Script>
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '${process.env.NEXT_PUBLIC_GA}');`}
+      </Script>
     </>
   );
 };
