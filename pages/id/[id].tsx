@@ -57,7 +57,7 @@ const ProductPage = (props: any) => {
                 key={tag.id}
                 className="bg-pink-600 flex mr-2 my-1 px-2 py-1 rounded-xl font-bold text-white shadow-md"
               >
-                <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
+                <Link href={`/tag/${tag.name}`}>{tag.name}</Link>
               </h5>
             ))}
           </div>

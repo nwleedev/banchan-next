@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/tags/id/${tag}/1`,
+    `${process.env.NEXT_PUBLIC_API_URL}/tags/name/${encodeURIComponent(tag)}/1`,
   );
   const {
     tag: { id, name, products },
@@ -42,7 +42,9 @@ const ProductByTag = (props: any) => {
     setIsLoading(false);
     try {
       const resp = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/tags/id/${tagId}/${nextPage}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/tags/name/${encodeURIComponent(
+          tagName,
+        )}/${nextPage}`,
       );
       const {
         tag: { products: _products },

@@ -74,7 +74,7 @@ const Home = (props: any) => {
                 key={tag.id}
                 className="whitespace-nowrap bg-pink-600 text-white text-sm py-1 mr-2 px-2 text-center rounded-md shadow-md"
               >
-                <Link href={`/tag/${tag.id}`}>{tag.name}</Link>
+                <Link href={`/tag/${tag.name}`}>{tag.name}</Link>
               </h4>
             ))}
         </div>
