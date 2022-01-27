@@ -1,10 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { IProductItem, IProductResponse } from '../../interfaces/product/item';
 import { LinkIcon } from '../../components/icons';
 import { MainLayout } from '../../components/layouts/Layout';
 import { Doughnut } from 'react-chartjs-2';
+import { MouseEventHandler, useState } from 'react';
+import { NextIcon } from '../../components/icons/next';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
@@ -29,7 +31,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const ProductPage = (props: any) => {
+  const [videoIndex, setVideoIndex] = useState(0);
   const product: IProductItem = props.product;
+
+  const handleChange: MouseEventHandler<HTMLButtonElement> = (e: any) => {
+    e.preventDefault();
+    const nextIndex = videoIndex + 1;
+    if (nextIndex >= product.videos.length) {
+      setVideoIndex(0);
+    } else {
+      setVideoIndex(nextIndex);
+    }
+  };
 
   return (
     product && (
@@ -91,6 +104,24 @@ const ProductPage = (props: any) => {
               />
             )}
           </div>
+          {product.videos && (
+            <div className="max-w-xl h-96 mb-2 flex flex-col md:flex-row mb-2 items-start md:items-center md:justify-start justify-end">
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube-nocookie.com/embed/${product.videos[videoIndex].video_id}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+              <button
+                className="flex justify-center items-center text-white bg-purple-500 px-2 py-1 rounded-md my-3 w-full md:w-auto md:h-full md:ml-2"
+                onClick={handleChange}
+              >
+                <NextIcon />
+              </button>
+            </div>
+          )}
           <div className="flex">
             <a
               className="px-4 flex justify-center items-center rounded-md bg-green-400 mr-2 py-1 shadow-md"
@@ -103,14 +134,12 @@ const ProductPage = (props: any) => {
             </a>
           </div>
           <h3 className="font-bold mt-4 text-xl">관련 이미지</h3>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
             {product.posters.map((poster, i) => (
-              <div key={i} className="w-full relative mt-4 mx-auto">
-                <Image
+              <div key={i} className="w-full relative mt-2 md:mt-4 mx-auto">
+                <img
                   src={poster.url}
                   alt={`product_poster_${i}`}
-                  layout="responsive"
-                  objectFit="contain"
                   width="100%"
                   height="100%"
                 />
