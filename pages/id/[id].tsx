@@ -50,6 +50,9 @@ const ProductPage = (props: any) => {
         pageTitle={product.title}
         url={product.landing_url}
         image={product.thumbnail}
+        keyword={`${product.title},${product.tags
+          .map((tag) => tag.name)
+          .join(',')},${product.price}`}
       >
         <div className="px-2">
           <h1 className="text-2xl font-bold">{product.title}</h1>

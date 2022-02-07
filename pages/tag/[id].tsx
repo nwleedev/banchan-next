@@ -82,7 +82,7 @@ const ProductByTag = (props: any) => {
   }, [isLoading]);
 
   return (
-    <MainLayout pageTitle={tagName + ' 태그'}>
+    <MainLayout pageTitle={tagName + ' 태그'} keyword={`${tagName},태그`}>
       <>
         <div className="flex items-end">
           <h4 className="text-center font-bold text-white py-1 ml-2 mr-2 bg-black w-32 rounded-md">

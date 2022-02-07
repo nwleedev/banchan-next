@@ -6,7 +6,13 @@ import { ILayout } from '../../interfaces/layout';
 import { ScrollIcon } from '../icons';
 import Script from 'next/script';
 
-export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
+export const MainLayout = ({
+  pageTitle,
+  image,
+  url,
+  children,
+  keyword,
+}: ILayout) => {
   return (
     <>
       <div
@@ -27,14 +33,32 @@ export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
           <meta name="description" content="Welcome to Online Banchan App!" />
           {image && (
             <>
+              <meta name="image" content={image} />
               <meta name="og:image" content={image} />
               <meta name="twitter:image" content={image} />
             </>
           )}
           {url && (
             <>
+              <meta name="url" content={url} />
               <meta name="og:url" content={url} />
               <meta name="twitter:url" content={url} />
+            </>
+          )}
+          {keyword && (
+            <>
+              <meta
+                name="keyword"
+                content={keyword + ',반찬저장소,우리들의 맛있는 반찬 전시회'}
+              />
+              <meta
+                name="og:keyword"
+                content={keyword + ',반찬저장소,우리들의 맛있는 반찬 전시회'}
+              />
+              <meta
+                name="twitter:keyword"
+                content={keyword + ',반찬저장소,우리들의 맛있는 반찬 전시회'}
+              />
             </>
           )}
           <link rel="icon" href="/favicon.ico" />
@@ -42,7 +66,7 @@ export const MainLayout = ({ pageTitle, image, url, children }: ILayout) => {
 
         <div className="flex items-center mt-4 whitespace-nowrap relative">
           <h1 className="md:text-4xl xs:text-2xl font-bold mr-2 pl-2 whitespace-nowrap">
-            <Link href="/">BANCHAN APP</Link>
+            <Link href="/">반찬 저장소</Link>
           </h1>
           <Link href="/" passHref={true}>
             <div className="relative xs:w-12 md:w-18">

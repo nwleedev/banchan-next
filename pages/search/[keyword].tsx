@@ -78,7 +78,7 @@ const ProductSearch = (props: any) => {
   }, [isLoading]);
 
   return (
-    <MainLayout pageTitle={keyword + ' 검색'}>
+    <MainLayout pageTitle={keyword + ' 검색'} keyword={`${keyword},검색`}>
       <>
         <h4 className="text-center font-bold text-white px-1 py-2 ml-2 bg-black w-32 rounded-md">
           <Link href="/search">검색 화면</Link>

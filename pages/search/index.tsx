@@ -18,7 +18,7 @@ const ProductSearch = () => {
   };
 
   return (
-    <MainLayout>
+    <MainLayout keyword={`검색`}>
       <form
         onSubmit={handleSubmit}
         className="flex relative mx-auto items-center my-4 sticky top-0 z-50 rounded-md border-2 bg-gray-200 transition p-1"
